@@ -42,14 +42,14 @@ svg {
   position: absolute;
   bottom: 0%;
   background: rgb(255, 255, 255);
-  opacity: 0;
+  /* opacity: 0; */
   padding: 1rem;
   width: 80%;
   border-top-right-radius: 1rem;
-  pointer-events: none;
+  /* pointer-events: none; */
   border-top-left-radius: 1rem;
   /* We are adding an adjustemnt class */
-  transform: translateY(100px);
+  /* transform: translateY(100px); */
   transition: all 0.5s ease-in-out;
 }
 .sliders.active {
