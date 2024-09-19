@@ -9,6 +9,11 @@ sliders.forEach((slider) => {
   slider.addEventListener("input", hslControls);
 });
 
+//update texrUI
+colorDivs.forEach((div, index) => {
+  div.addEventListener("change", () => updateTextUI(index));
+});
+
 //Functions
 //color Generator
 function generaeHex() {
@@ -88,6 +93,14 @@ function hslControls(e) {
     .set("hsl.h", hue.value);
 
   colorDivs[index].style.backgroundColor = color;
+}
+
+function updateTextUI(index) {
+  const activeDiv = colorDivs[index];
+  const color = chroma(activeDiv.style.backgroundColor);
+  const hexText = activeDiv.querySelector("h2");
+  const icons = activeDiv.querySelectorAll(".controls button");
+  hexText.innerText = color.hex();
 }
 
 randomColors();
