@@ -4,6 +4,11 @@ const generateBtn = document.querySelector(".generate");
 const sliders = document.querySelectorAll("input[type='range']");
 const currentHexes = document.querySelectorAll(".color h2");
 let initialColors;
+const popup = document.querySelector(".copy-container");
+const sliderContainers = document.querySelectorAll(".sliders");
+//adjustment panel
+const adjustBtn = document.querySelectorAll(".adjust");
+const closeAdjustment = document.querySelectorAll(".close-adjustment");
 //add event Listeners
 sliders.forEach((slider) => {
   slider.addEventListener("input", hslControls);
@@ -12,6 +17,26 @@ sliders.forEach((slider) => {
 //update texrUI
 colorDivs.forEach((div, index) => {
   div.addEventListener("change", () => updateTextUI(index));
+});
+
+//popups
+currentHexes.forEach((hex) => {
+  hex.addEventListener("click", () => {
+    copyToClipboard(hex);
+  });
+});
+
+popup.addEventListener("transitionend", () => popup.classList.remove("active"));
+//adjust
+adjustBtn.forEach((button, index) => {
+  button.addEventListener("click", () => {
+    openAdjustmentPanel(index);
+  });
+});
+closeAdjustment.forEach((button, index) => {
+  button.addEventListener("click", () => {
+    closeAdjustmentPanel(index);
+  });
 });
 
 //Functions
@@ -130,6 +155,26 @@ function resetInputs() {
       slider.value = Math.floor(satValue * 100) / 100;
     }
   });
+}
+
+function copyToClipboard(hex) {
+  const el = document.createElement("textarea");
+  el.value = hex.innerHTML;
+  document.body.appendChild(el);
+  el.select();
+  document.execCommand("copy");
+  document.body.removeChild(el);
+  //popup animate
+  const popupBox = popup.children[0];
+  popup.classList.add("active");
+  popupBox.classList.add("active");
+}
+
+function openAdjustmentPanel(index) {
+  sliderContainers[index].classList.toggle("active");
+}
+function closeAdjustmentPanel(index) {
+  sliderContainers[index].classList.remove("active");
 }
 
 randomColors();

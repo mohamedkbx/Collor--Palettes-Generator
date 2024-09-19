@@ -42,14 +42,14 @@ svg {
   position: absolute;
   bottom: 0%;
   background: rgb(255, 255, 255);
-  /* opacity: 0; */
+  opacity: 0;
   padding: 1rem;
   width: 80%;
   border-top-right-radius: 1rem;
-  /* pointer-events: none; */
+  pointer-events: none;
   border-top-left-radius: 1rem;
   /* We are adding an adjustemnt class */
-  /* transform: translateY(100px); */
+  transform: translateY(100px);
   transition: all 0.5s ease-in-out;
 }
 .sliders.active {
@@ -134,6 +134,7 @@ input[type="range"] {
   display: flex;
   justify-content: center;
   transition: all 0.5s ease-in-out;
+  transform: translateY(-2rem);
   align-items: center;
   opacity: 0;
   pointer-events: none;
@@ -147,7 +148,7 @@ input[type="range"] {
   justify-content: space-evenly;
   align-items: center;
   border-radius: 2rem;
-  transition: transform 0.5s ease;
+  transition: transform 0.5s ease-in-out;
   transform: translateY(-2rem);
   min-width: 30%;
   min-height: 30vh;
@@ -163,6 +164,7 @@ input[type="range"] {
 .library-container.active {
   opacity: 1;
   pointer-events: all;
+  transform: translateY(0rem);
 }
 .copy-popup.active,
 .save-popup.active,
