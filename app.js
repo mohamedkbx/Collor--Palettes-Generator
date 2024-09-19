@@ -8,8 +8,11 @@ const popup = document.querySelector(".copy-container");
 const sliderContainers = document.querySelectorAll(".sliders");
 //adjustment panel
 const adjustBtn = document.querySelectorAll(".adjust");
+const lockBtn = document.querySelectorAll(".lock");
 const closeAdjustment = document.querySelectorAll(".close-adjustment");
 //add event Listeners
+generateBtn.addEventListener("click", randomColors);
+
 sliders.forEach((slider) => {
   slider.addEventListener("input", hslControls);
 });
@@ -73,6 +76,11 @@ function randomColors() {
   });
   //reset inputs
   resetInputs();
+  //check btns contrast
+  adjustBtn.forEach((button, index) => {
+    checkTextContract(initialColors[index], button);
+    checkTextContract(initialColors[index], lockBtn[index]);
+  });
 }
 
 function checkTextContract(color, text) {
