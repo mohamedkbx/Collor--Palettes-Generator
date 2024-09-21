@@ -4,13 +4,11 @@
   box-sizing: border-box;
 }
 body {
-  font-family: "Chakra Petch", sans-serif;
-  font-weight: 300;
-  font-style: normal;
+  font-family: "Muli", sans-serif;
   color: rgb(51, 51, 51);
 }
 button {
-  font-family: "Chakra Petch", sans-serif;
+  font-family: "Muli", sans-serif;
 }
 path,
 i,
@@ -134,7 +132,6 @@ input[type="range"] {
   display: flex;
   justify-content: center;
   transition: all 0.5s ease-in-out;
-  transform: translateY(-2rem);
   align-items: center;
   opacity: 0;
   pointer-events: none;
@@ -148,7 +145,7 @@ input[type="range"] {
   justify-content: space-evenly;
   align-items: center;
   border-radius: 2rem;
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.5s ease;
   transform: translateY(-2rem);
   min-width: 30%;
   min-height: 30vh;
@@ -164,7 +161,6 @@ input[type="range"] {
 .library-container.active {
   opacity: 1;
   pointer-events: all;
-  transform: translateY(0rem);
 }
 .copy-popup.active,
 .save-popup.active,
