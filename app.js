@@ -11,7 +11,7 @@ const adjustBtn = document.querySelectorAll(".adjust");
 const lockBtn = document.querySelectorAll(".lock");
 const closeAdjustment = document.querySelectorAll(".close-adjustment");
 // FOR lOCAL STORAGE
-let savePallets = [];
+let savedPallets = [];
 //add event Listeners
 generateBtn.addEventListener("click", randomColors);
 
@@ -222,16 +222,46 @@ const saveInput = document.querySelector(".save-name");
 //event Listeners
 saveBtn.addEventListener("click", openPallete);
 closeSave.addEventListener("click", closePallete);
+submitSave.addEventListener("click", savePallete);
 
 function openPallete(e) {
   const popup = saveContainer.children[0];
   popup.classList.add("active");
   saveContainer.classList.add("active");
+  saveInput.focus();
 }
 function closePallete(e) {
   const popup = saveContainer.children[0];
   popup.classList.remove("active");
   saveContainer.classList.remove("active");
+}
+
+function savePallete(e) {
+  popup.classList.remove("active");
+  saveContainer.classList.remove("active");
+  const name = saveInput.value;
+  const colors = [];
+  currentHexes.forEach((hex) => {
+    colors.push(hex.innerText);
+  });
+  //generate object
+  let palleteNr = savedPallets.length;
+  const palleteObj = { name, colors, nr: palleteNr };
+  savedPallets.push(palleteObj);
+  //save to local storage
+  saveToLocal(palleteObj);
+  saveInput.value = "";
+}
+
+function saveToLocal(palleteObj) {
+  let localPalletes;
+  if (localStorage.getItem("palletes") === null) {
+    localPalletes = [];
+  } else {
+    localPalletes = JSON.parse(localStorage.getItem("palletes"));
+  }
+  localPalletes.push(palleteObj);
+  localStorage.setItem("palletes", JSON.stringify(localPalletes));
 }
 
 randomColors();
