@@ -251,6 +251,14 @@ function savePallete(e) {
   });
   //generate object
   let palleteNr = savedPallets.length;
+
+  const paletteObjects = JSON.parse(localStorage.getItem("palletes"));
+  if (paletteObjects) {
+    palleteNr = paletteObjects.length;
+  } else {
+    palleteNr = savedPallets.length;
+  }
+
   const palleteObj = { name, colors, nr: palleteNr };
   savedPallets.push(palleteObj);
   //save to local storage
@@ -284,7 +292,7 @@ function savePallete(e) {
       checkTextContract(color, text);
       updateTextUI(index);
     });
-    libraryInputUpdate();
+    resetInputs();
   });
 
   // Append to Library
@@ -316,6 +324,52 @@ function closeLibrary() {
   popup.classList.remove("active");
 }
 
-function libraryInputUpdate() {}
+function getLocal() {
+  if (localStorage.getItem("palletes") === null) {
+    localPalletes = [];
+  } else {
+    const palleteObjects = JSON.parse(localStorage.getItem("palletes"));
+    savedPallets = [...palleteObjects];
 
+    palleteObjects.forEach((palleteObj) => {
+      //generate the palette for the library
+      const palette = document.createElement("div");
+      palette.classList.add("custom-palette");
+      const title = document.createElement("h4");
+      title.innerText = palleteObj.name;
+      const preview = document.createElement("div");
+      preview.classList.add("small-preview");
+      palleteObj.colors.forEach((smallColor) => {
+        const smallDiv = document.createElement("div");
+        smallDiv.style.backgroundColor = smallColor;
+        preview.appendChild(smallDiv);
+      });
+      const paletteBtn = document.createElement("button");
+      paletteBtn.classList.add("pick-palette-btn");
+      paletteBtn.classList.add(palleteObj.nr);
+      paletteBtn.innerText = "Select";
+      //attach event listener to the btn
+      paletteBtn.addEventListener("click", (e) => {
+        closeLibrary();
+        const palleteIndex = e.target.classList[1];
+        initialColors = [];
+        palleteObjects[palleteIndex].colors.forEach((color, index) => {
+          initialColors.push(color);
+          colorDivs[index].style.backgroundColor = color;
+          const text = colorDivs[index].children[0];
+          checkTextContract(color, text);
+          updateTextUI(index);
+        });
+        resetInputs();
+      });
+
+      // Append to Library
+      palette.appendChild(title);
+      palette.appendChild(preview);
+      palette.appendChild(paletteBtn);
+      libraryContainer.children[0].appendChild(palette);
+    });
+  }
+}
+getLocal();
 randomColors();
