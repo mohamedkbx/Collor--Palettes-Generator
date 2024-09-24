@@ -47,29 +47,7 @@ To install and run the Color Pallets Generator locally, follow these steps:
    ```bash
    git clone https://github.com/yourusername/color-pallets-generator.git
    ```
-2. Navigate to the project directory:
-   ```bash
-   cd color-pallets-generator
-   ```
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
-4. Start the development server:
-   ```bash
-   npm start
-   ```
 
 ## Contributing
 
 We welcome contributions! Please read our [contributing guidelines](CONTRIBUTING.md) for more details.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
-
-## Contact
-
-For any questions or feedback, please contact us at [email@example.com](mailto:email@example.com).
-
-Enjoy creating beautiful color pallets!
